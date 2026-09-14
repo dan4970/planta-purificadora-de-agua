@@ -1,14 +1,16 @@
-# Welcome to your Lovable project
+# PLANTA PURIFICADORA DE AGUA 
+
+mira necesito crear un CRM para mantenimiento correctivo, preventivo, y predictivo para una planta de agua purificadora, tener en cuenta, para el mantenimeinto predictivo de las maquinas cristicas el analisis de vibracion, recopilacion de datos  y analisis de datos para diagnosticar el estado de la maquina......
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/55a07a23-5c5c-41d3-9a0a-16b0a3203154).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +22,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
