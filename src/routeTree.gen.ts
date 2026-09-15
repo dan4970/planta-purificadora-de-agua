@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedActivosRouteImport } from './routes/_authenticated/activos'
+import { Route as AuthenticatedOrdenesRouteImport } from './routes/_authenticated/ordenes'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
+import { Route as AuthenticatedPreventivoRouteImport } from './routes/_authenticated/preventivo'
+import { Route as AuthenticatedUsuariosRouteImport } from './routes/_authenticated/usuarios'
 import { Route as ApiPublicVibrationIngestRouteImport } from './routes/api/public/vibration-ingest'
 
 const IndexRoute = IndexRouteImport.update({
@@ -35,9 +38,24 @@ const AuthenticatedActivosRoute = AuthenticatedActivosRouteImport.update({
   path: '/activos',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOrdenesRoute = AuthenticatedOrdenesRouteImport.update({
+  id: '/ordenes',
+  path: '/ordenes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPanelRoute = AuthenticatedPanelRouteImport.update({
   id: '/panel',
   path: '/panel',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPreventivoRoute = AuthenticatedPreventivoRouteImport.update({
+  id: '/preventivo',
+  path: '/preventivo',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedUsuariosRoute = AuthenticatedUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const ApiPublicVibrationIngestRoute =
@@ -51,14 +69,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/activos': typeof AuthenticatedActivosRoute
+  '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/preventivo': typeof AuthenticatedPreventivoRoute
+  '/usuarios': typeof AuthenticatedUsuariosRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/activos': typeof AuthenticatedActivosRoute
+  '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/preventivo': typeof AuthenticatedPreventivoRoute
+  '/usuarios': typeof AuthenticatedUsuariosRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
 }
 export interface FileRoutesById {
@@ -67,22 +91,43 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/activos': typeof AuthenticatedActivosRoute
+  '/_authenticated/ordenes': typeof AuthenticatedOrdenesRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRoute
+  '/_authenticated/preventivo': typeof AuthenticatedPreventivoRoute
+  '/_authenticated/usuarios': typeof AuthenticatedUsuariosRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/activos' | '/panel' | '/api/public/vibration-ingest'
+    | '/'
+    | '/auth'
+    | '/activos'
+    | '/ordenes'
+    | '/panel'
+    | '/preventivo'
+    | '/usuarios'
+    | '/api/public/vibration-ingest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/activos' | '/panel' | '/api/public/vibration-ingest'
+  to:
+    | '/'
+    | '/auth'
+    | '/activos'
+    | '/ordenes'
+    | '/panel'
+    | '/preventivo'
+    | '/usuarios'
+    | '/api/public/vibration-ingest'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/activos'
+    | '/_authenticated/ordenes'
     | '/_authenticated/panel'
+    | '/_authenticated/preventivo'
+    | '/_authenticated/usuarios'
     | '/api/public/vibration-ingest'
   fileRoutesById: FileRoutesById
 }
@@ -123,11 +168,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedActivosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ordenes': {
+      id: '/_authenticated/ordenes'
+      path: '/ordenes'
+      fullPath: '/ordenes'
+      preLoaderRoute: typeof AuthenticatedOrdenesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/panel': {
       id: '/_authenticated/panel'
       path: '/panel'
       fullPath: '/panel'
       preLoaderRoute: typeof AuthenticatedPanelRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/preventivo': {
+      id: '/_authenticated/preventivo'
+      path: '/preventivo'
+      fullPath: '/preventivo'
+      preLoaderRoute: typeof AuthenticatedPreventivoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/usuarios': {
+      id: '/_authenticated/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof AuthenticatedUsuariosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/vibration-ingest': {
@@ -142,12 +208,18 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedActivosRoute: typeof AuthenticatedActivosRoute
+  AuthenticatedOrdenesRoute: typeof AuthenticatedOrdenesRoute
   AuthenticatedPanelRoute: typeof AuthenticatedPanelRoute
+  AuthenticatedPreventivoRoute: typeof AuthenticatedPreventivoRoute
+  AuthenticatedUsuariosRoute: typeof AuthenticatedUsuariosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedActivosRoute: AuthenticatedActivosRoute,
+  AuthenticatedOrdenesRoute: AuthenticatedOrdenesRoute,
   AuthenticatedPanelRoute: AuthenticatedPanelRoute,
+  AuthenticatedPreventivoRoute: AuthenticatedPreventivoRoute,
+  AuthenticatedUsuariosRoute: AuthenticatedUsuariosRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
