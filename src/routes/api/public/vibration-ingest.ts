@@ -60,7 +60,15 @@ export const Route = createFileRoute("/api/public/vibration-ingest")({
           byCode.set(p.code, p.id);
         }
 
-        const rows: Array<Record<string, unknown>> = [];
+        const rows: Array<{
+          measurement_point_id: string;
+          measured_at: string;
+          velocity_rms: number;
+          acceleration_rms: number | null;
+          temperature_c: number | null;
+          rpm: number | null;
+          source: string;
+        }> = [];
         const unmatched: string[] = [];
         for (const r of parsed.readings) {
           const pointId =
