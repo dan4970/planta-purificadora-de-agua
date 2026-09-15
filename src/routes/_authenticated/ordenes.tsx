@@ -66,7 +66,7 @@ export const Route = createFileRoute("/_authenticated/ordenes")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: Ordenes;
+  component: Ordenes,
 });
 
 function Ordenes() {
