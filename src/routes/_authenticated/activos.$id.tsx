@@ -90,7 +90,7 @@ function FichaEquipo() {
   return (
     <AppShell
       title={asset ? asset.name : "Ficha del equipo"}
-      subtitle={asset ? `${asset.code} · ${asset.area}` : undefined}
+      subtitle={asset ? `${asset.code} · ${asset.area}` : ""}
       actions={
         <Button asChild variant="outline" size="sm">
           <Link to="/activos">
