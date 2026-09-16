@@ -36,7 +36,7 @@ import {
   type Criticality,
 } from "@/lib/crm";
 
-export const Route = createFileRoute("/_authenticated/activos")({
+export const Route = createFileRoute("/_authenticated/activos/")({
   head: () => ({
     meta: [
       { title: "Equipos de la planta — AquaMant" },

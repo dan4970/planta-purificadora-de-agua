@@ -12,11 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AuthenticatedActivosRouteImport } from './routes/_authenticated/activos'
+import { Route as AuthenticatedIntegracionRouteImport } from './routes/_authenticated/integracion'
 import { Route as AuthenticatedOrdenesRouteImport } from './routes/_authenticated/ordenes'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
+import { Route as AuthenticatedPredictivoRouteImport } from './routes/_authenticated/predictivo'
 import { Route as AuthenticatedPreventivoRouteImport } from './routes/_authenticated/preventivo'
 import { Route as AuthenticatedUsuariosRouteImport } from './routes/_authenticated/usuarios'
+import { Route as AuthenticatedActivosIndexRouteImport } from './routes/_authenticated/activos.index'
+import { Route as AuthenticatedActivosIdRouteImport } from './routes/_authenticated/activos.$id'
 import { Route as ApiPublicVibrationIngestRouteImport } from './routes/api/public/vibration-ingest'
 
 const IndexRoute = IndexRouteImport.update({
@@ -33,11 +36,12 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedActivosRoute = AuthenticatedActivosRouteImport.update({
-  id: '/activos',
-  path: '/activos',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedIntegracionRoute =
+  AuthenticatedIntegracionRouteImport.update({
+    id: '/integracion',
+    path: '/integracion',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedOrdenesRoute = AuthenticatedOrdenesRouteImport.update({
   id: '/ordenes',
   path: '/ordenes',
@@ -46,6 +50,11 @@ const AuthenticatedOrdenesRoute = AuthenticatedOrdenesRouteImport.update({
 const AuthenticatedPanelRoute = AuthenticatedPanelRouteImport.update({
   id: '/panel',
   path: '/panel',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPredictivoRoute = AuthenticatedPredictivoRouteImport.update({
+  id: '/predictivo',
+  path: '/predictivo',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPreventivoRoute = AuthenticatedPreventivoRouteImport.update({
@@ -58,6 +67,17 @@ const AuthenticatedUsuariosRoute = AuthenticatedUsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedActivosIndexRoute =
+  AuthenticatedActivosIndexRouteImport.update({
+    id: '/activos/',
+    path: '/activos/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedActivosIdRoute = AuthenticatedActivosIdRouteImport.update({
+  id: '/activos/$id',
+  path: '/activos/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const ApiPublicVibrationIngestRoute =
   ApiPublicVibrationIngestRouteImport.update({
     id: '/api/public/vibration-ingest',
@@ -68,67 +88,85 @@ const ApiPublicVibrationIngestRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/activos': typeof AuthenticatedActivosRoute
+  '/integracion': typeof AuthenticatedIntegracionRoute
   '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/predictivo': typeof AuthenticatedPredictivoRoute
   '/preventivo': typeof AuthenticatedPreventivoRoute
   '/usuarios': typeof AuthenticatedUsuariosRoute
+  '/activos/$id': typeof AuthenticatedActivosIdRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
+  '/activos/': typeof AuthenticatedActivosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/activos': typeof AuthenticatedActivosRoute
+  '/integracion': typeof AuthenticatedIntegracionRoute
   '/ordenes': typeof AuthenticatedOrdenesRoute
   '/panel': typeof AuthenticatedPanelRoute
+  '/predictivo': typeof AuthenticatedPredictivoRoute
   '/preventivo': typeof AuthenticatedPreventivoRoute
   '/usuarios': typeof AuthenticatedUsuariosRoute
+  '/activos/$id': typeof AuthenticatedActivosIdRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
+  '/activos': typeof AuthenticatedActivosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
-  '/_authenticated/activos': typeof AuthenticatedActivosRoute
+  '/_authenticated/integracion': typeof AuthenticatedIntegracionRoute
   '/_authenticated/ordenes': typeof AuthenticatedOrdenesRoute
   '/_authenticated/panel': typeof AuthenticatedPanelRoute
+  '/_authenticated/predictivo': typeof AuthenticatedPredictivoRoute
   '/_authenticated/preventivo': typeof AuthenticatedPreventivoRoute
   '/_authenticated/usuarios': typeof AuthenticatedUsuariosRoute
+  '/_authenticated/activos/$id': typeof AuthenticatedActivosIdRoute
   '/api/public/vibration-ingest': typeof ApiPublicVibrationIngestRoute
+  '/_authenticated/activos/': typeof AuthenticatedActivosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
-    | '/activos'
+    | '/integracion'
     | '/ordenes'
     | '/panel'
+    | '/predictivo'
     | '/preventivo'
     | '/usuarios'
+    | '/activos/$id'
     | '/api/public/vibration-ingest'
+    | '/activos/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
-    | '/activos'
+    | '/integracion'
     | '/ordenes'
     | '/panel'
+    | '/predictivo'
     | '/preventivo'
     | '/usuarios'
+    | '/activos/$id'
     | '/api/public/vibration-ingest'
+    | '/activos'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
-    | '/_authenticated/activos'
+    | '/_authenticated/integracion'
     | '/_authenticated/ordenes'
     | '/_authenticated/panel'
+    | '/_authenticated/predictivo'
     | '/_authenticated/preventivo'
     | '/_authenticated/usuarios'
+    | '/_authenticated/activos/$id'
     | '/api/public/vibration-ingest'
+    | '/_authenticated/activos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -161,11 +199,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/activos': {
-      id: '/_authenticated/activos'
-      path: '/activos'
-      fullPath: '/activos'
-      preLoaderRoute: typeof AuthenticatedActivosRouteImport
+    '/_authenticated/integracion': {
+      id: '/_authenticated/integracion'
+      path: '/integracion'
+      fullPath: '/integracion'
+      preLoaderRoute: typeof AuthenticatedIntegracionRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/ordenes': {
@@ -182,6 +220,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/predictivo': {
+      id: '/_authenticated/predictivo'
+      path: '/predictivo'
+      fullPath: '/predictivo'
+      preLoaderRoute: typeof AuthenticatedPredictivoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/preventivo': {
       id: '/_authenticated/preventivo'
       path: '/preventivo'
@@ -196,6 +241,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsuariosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/activos/': {
+      id: '/_authenticated/activos/'
+      path: '/activos'
+      fullPath: '/activos/'
+      preLoaderRoute: typeof AuthenticatedActivosIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/activos/$id': {
+      id: '/_authenticated/activos/$id'
+      path: '/activos/$id'
+      fullPath: '/activos/$id'
+      preLoaderRoute: typeof AuthenticatedActivosIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/public/vibration-ingest': {
       id: '/api/public/vibration-ingest'
       path: '/api/public/vibration-ingest'
@@ -207,19 +266,25 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedActivosRoute: typeof AuthenticatedActivosRoute
+  AuthenticatedIntegracionRoute: typeof AuthenticatedIntegracionRoute
   AuthenticatedOrdenesRoute: typeof AuthenticatedOrdenesRoute
   AuthenticatedPanelRoute: typeof AuthenticatedPanelRoute
+  AuthenticatedPredictivoRoute: typeof AuthenticatedPredictivoRoute
   AuthenticatedPreventivoRoute: typeof AuthenticatedPreventivoRoute
   AuthenticatedUsuariosRoute: typeof AuthenticatedUsuariosRoute
+  AuthenticatedActivosIdRoute: typeof AuthenticatedActivosIdRoute
+  AuthenticatedActivosIndexRoute: typeof AuthenticatedActivosIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedActivosRoute: AuthenticatedActivosRoute,
+  AuthenticatedIntegracionRoute: AuthenticatedIntegracionRoute,
   AuthenticatedOrdenesRoute: AuthenticatedOrdenesRoute,
   AuthenticatedPanelRoute: AuthenticatedPanelRoute,
+  AuthenticatedPredictivoRoute: AuthenticatedPredictivoRoute,
   AuthenticatedPreventivoRoute: AuthenticatedPreventivoRoute,
   AuthenticatedUsuariosRoute: AuthenticatedUsuariosRoute,
+  AuthenticatedActivosIdRoute: AuthenticatedActivosIdRoute,
+  AuthenticatedActivosIndexRoute: AuthenticatedActivosIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
