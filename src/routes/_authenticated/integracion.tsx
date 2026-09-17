@@ -224,7 +224,7 @@ function Integracion() {
             </div>
             <div className="space-y-2">
               <Label>Ejemplo de envío</Label>
-              <pre className="overflow-x-auto rounded-md border border-border bg-muted/30 p-3 font-mono text-xs">
+              <pre className="overflow-x-auto whitespace-pre-wrap break-all rounded-md border border-border bg-muted/30 p-3 font-mono text-xs">
                 {sample}
               </pre>
             </div>
